@@ -11,7 +11,8 @@ class EthereumUtils {
 
   void initial() {
     httpClient = http.Client();
-    String infuraApi = "https://rinkeby.infura.io/v3/61dd81bf20bb471fbea410cadfbd0e7d";
+    // String infuraApi = "https://rinkeby.infura.io/v3/61dd81bf20bb471fbea410cadfbd0e7d";
+    String infuraApi = "https://sepolia.infura.io/v3/089ad5bc19894f4f9f576adb158c7279";
     web3client = Web3Client(infuraApi, httpClient);
   }
 
@@ -24,6 +25,7 @@ class EthereumUtils {
   }
 
   Future<String> sendBalance(int amount) async {
+    print("the sending amount $amount");
     var bigAmount = BigInt.from(amount);
     EthPrivateKey privateKeyCred = EthPrivateKey.fromHex(dotenv.env['METAMASK_PRIVATE_KEY']!);
     DeployedContract contract = await getDeployedContract();
@@ -35,12 +37,13 @@ class EthereumUtils {
           function: etherFunction,
           parameters: [bigAmount],
           maxGas: 100000,
-        ),chainId: 4,
+        ),chainId: 11155111,
         fetchChainIdFromNetworkId: false);
     return result;
   }
 
   Future<String> withDrawBalance(int amount) async {
+    print("The withdrawal amount $amount");
     var bigAmount = BigInt.from(amount);
     EthPrivateKey privateKeyCred = EthPrivateKey.fromHex(dotenv.env['METAMASK_PRIVATE_KEY']!);
     DeployedContract contract = await getDeployedContract();
@@ -52,7 +55,7 @@ class EthereumUtils {
           function: etherFunction,
           parameters: [bigAmount],
           maxGas: 100000,
-        ),chainId: 4,
+        ),chainId: 11155111,
         fetchChainIdFromNetworkId: false);
     return result;
 

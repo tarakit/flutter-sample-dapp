@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       Text("Current Balance", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white),),
                       SizedBox(height: 12,),
-                      _data == null ? CircularProgressIndicator() : Text("${_data}", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30, color: Colors.white),)
+                      _data == null ? CircularProgressIndicator() : Text("${_data}", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 26, color: Colors.white),)
                     ],
                   ),
                 ),
